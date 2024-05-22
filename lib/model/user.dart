@@ -6,7 +6,9 @@
 // "first":"Beat",
 // "last":"Bonnet"
 // },
-class Users {
+import 'package:api_server_calling/model/user_name.dart';
+
+class User {
   final UserName name;
   final String gender;
   final String email;
@@ -14,21 +16,17 @@ class Users {
   final String cell;
   final String nat;
 
-  Users(
+  User(
       {required this.name,
       required this.gender,
       required this.email,
       required this.phone,
       required this.cell,
       required this.nat});
+
+      String get fullName{
+        return '${name.title} ${name.first} ${name.last}';
+      }
 }
 
-// Now making a complex object
 
-class UserName {
-  final String title;
-  final String first;
-  final String last;
-
-  UserName({required this.title, required this.first, required this.last});
-}
