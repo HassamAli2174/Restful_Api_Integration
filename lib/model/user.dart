@@ -7,6 +7,7 @@
 // "last":"Bonnet"
 // },
 class Users {
+  final UserName name;
   final String gender;
   final String email;
   final String phone;
@@ -14,9 +15,20 @@ class Users {
   final String nat;
 
   Users(
-      {required this.gender,
+      {required this.name,
+      required this.gender,
       required this.email,
       required this.phone,
       required this.cell,
       required this.nat});
+}
+
+// Now making a complex object
+
+class UserName {
+  final String title;
+  final String first;
+  final String last;
+
+  UserName({required this.title, required this.first, required this.last});
 }

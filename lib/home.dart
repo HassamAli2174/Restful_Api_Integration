@@ -27,11 +27,12 @@ class _HomePageState extends State<HomePage> {
           final email = user.email;
           final phone = user.phone;
           final nat = user.nat;
-
+          final color = user.gender == 'male' ? Colors.cyan[300] : Colors.red;
           // final name = user['name']['first'];
           // final imageURL = user['picture']['thumbnail'];
           return ListTile(
-            title: Text(email),
+            title: Text(user.name.first),
+            tileColor: color,
             subtitle: Text(nat),
             trailing: Text(phone),
           );
@@ -49,7 +50,12 @@ class _HomePageState extends State<HomePage> {
     final json = jsonDecode(body);
     final results = json['results'] as List<dynamic>;
     final transformed = results.map((e) {
+      final name = UserName(
+          title: e['name']['title'],
+          first: e['name']['first'],
+          last: e['name']['last']);
       return Users(
+          name: name,
           cell: e['cell'],
           phone: e['phone'],
           email: e['email'],
