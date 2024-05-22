@@ -35,8 +35,8 @@ class _HomePageState extends State<HomePage> {
           // final imageURL = user['picture']['thumbnail'];
           return ListTile(
             title: Text(user.fullName),
-            tileColor: color,
-            subtitle: Text(nat),
+            // tileColor: color,
+            subtitle: Text(user.location.postcode),
             trailing: Text(phone),
           );
         },
