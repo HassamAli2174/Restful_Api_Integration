@@ -9,6 +9,7 @@
 import 'package:api_server_calling/model/user_dob.dart';
 import 'package:api_server_calling/model/user_location.dart';
 import 'package:api_server_calling/model/user_name.dart';
+import 'package:api_server_calling/model/user_picture.dart';
 
 class User {
   final UserName name;
@@ -19,15 +20,36 @@ class User {
   final String nat;
   final UserDob dob;
   final UserLocation location;
+  final UserPicture picture;
   User( 
-      {required this.location,
-        required this.dob,
+      { required  this.picture,
+        required this.location,
+      required this.dob,
       required this.name,
       required this.gender,
       required this.email,
       required this.phone,
       required this.cell,
       required this.nat});
+
+  //Factory constructor which will parse the data
+  factory User.fromMap(Map<String, dynamic> e) {
+    final name = UserName.fromMap(e['name']);
+    final dob = UserDob.fromMap(e['dob']);
+    final location = UserLocation.fromMap(e['location']);
+    final picture = UserPicture.fromMap(e['picture']);
+    return User(
+      name: name,
+      location: location,
+      picture: picture,
+      dob: dob,
+      cell: e['cell'],
+      phone: e['phone'],
+      email: e['email'],
+      gender: e['gender'],
+      nat: e['nat'],
+    );
+  }
 
   String get fullName {
     return '${name.title} ${name.first} ${name.last}';

@@ -21,23 +21,29 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.amber,
         title: const Text('Restful api calling'),
       ),
       body: ListView.builder(
         itemCount: users.length,
         itemBuilder: (BuildContext context, int index) {
           final user = users[index];
-          final email = user.email;
-          final phone = user.phone;
-          final nat = user.nat;
-          final color = user.gender == 'male' ? Colors.cyan[300] : Colors.red;
+          // final email = user.email;
           // final name = user['name']['first'];
-          // final imageURL = user['picture']['thumbnail'];
+          // final nat = user.nat;
+          final phone = user.phone;
+          final color =
+              user.gender == 'male' ? Colors.lightBlue : Colors.amberAccent;
+          final imageURL = user.picture.thumbnail;
           return ListTile(
             title: Text(user.fullName),
-            // tileColor: color,
-            subtitle: Text(user.location.postcode),
-            trailing: Text(phone),
+            tileColor: color,
+            leading: ClipRRect(
+              borderRadius: BorderRadius.circular(25),
+              child: Image.network(imageURL),
+            ),
+            trailing: Text(user.gender),
+            subtitle: Text(phone),
           );
         },
       ),
